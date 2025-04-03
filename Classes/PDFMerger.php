@@ -32,9 +32,16 @@ class PDFMerger
      */
     public function __construct()
     {
+        if (!function_exists('get_magic_quotes_runtime')) {
+            function get_magic_quotes_runtime() {
+                return false;
+            }
+        }
+        
         if(!class_exists("FPDF")) {
             require_once('fpdf/fpdf.php');
         }
+        
         if(!class_exists("FPDI")) {
             require_once('fpdi/fpdi.php');
         }
